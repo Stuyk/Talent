@@ -1,2 +1,4 @@
 .vs/
 .bin/
+.obj/
+.bin/Debug/netcoreapp2.0
