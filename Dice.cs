@@ -15,7 +15,7 @@ namespace Talent
         /// <returns></returns>
         public static int RollDice(int sides = 20)
         {
-            return Random.Next(1, sides);
+            return Random.Next(1, sides + 1);
         }
     }
 }

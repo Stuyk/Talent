@@ -5,13 +5,15 @@ namespace Talent
 {
     public class Talent : Script
     {
+        public Talent()
+        {
+            Settings.Initialze();
+        }
+
         [ServerEvent(Event.PlayerSpawn)]
         public void OnPlayerSpawn(Client client)
         {
-            if (client.HasData("TalentScoresheet"))
-                return;
-
-            TalentScoresheet tSheet = new TalentScoresheet(client, true);
+            new TalentScoresheet(client, false);
         }
     }
 }
