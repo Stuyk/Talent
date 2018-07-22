@@ -17,7 +17,7 @@ namespace Talent
         {
             using (var db = new LiteDatabase(Settings.DatabaseLocation + Settings.DatabaseFile))
             {
-                db.GetCollection<T>().Insert(data);
+                db.GetCollection<T>().Upsert(data);
                 return true;
             }
         }

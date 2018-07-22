@@ -12,6 +12,8 @@ namespace Talent
         public static int TalentDivision { get; set; } = 3;
         [JsonProperty("AssignRandomStats")]
         public static bool AssignRandomStats { get; set; } = false;
+        [JsonProperty("LoadSheetsOnJoin")]
+        public static bool LoadSheetsOnJoin { get; set; } = false;
         [JsonProperty("DisableCommands")]
         public static bool DisableCommands { get; set; } = false;
         [JsonProperty("DatabaseLocation")]

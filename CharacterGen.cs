@@ -33,17 +33,25 @@ namespace Talent
         /// <param name="charisma"></param>
         /// <param name="randomize"></param>
         /// <returns></returns>
-        public static TalentScoresheet SetupNewSheet(Client client, int strength, int intelligence, int endurance, int charisma, bool randomize = false)
+        public static TalentScoresheet SetupNewSheet(Client client, int strength, int intelligence, int endurance, int charisma, bool randomize = false, bool save = true)
         {
             TalentScoresheet sheet = new TalentScoresheet(client);
 
             if (randomize)
-                return sheet;
+            {
+                sheet.Strength = GenerateModifier();
+                sheet.Intelligence = GenerateModifier();
+                sheet.Endurance = GenerateModifier();
+                sheet.Charisma = GenerateModifier();
+            } else {
+                sheet.Strength = strength;
+                sheet.Intelligence = intelligence;
+                sheet.Endurance = endurance;
+                sheet.Charisma = charisma;
+            }
 
-            sheet.Strength = strength;
-            sheet.Intelligence = intelligence;
-            sheet.Endurance = endurance;
-            sheet.Charisma = charisma;
+            if (save)
+                sheet.SaveScoresheet();
 
             return sheet;
         }

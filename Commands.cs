@@ -7,9 +7,12 @@ namespace Talent
 {
     public class Commands : Script
     {
-        [Command("talentsheet")]
+        [Command("checksheet")]
         public void SkillCheck(Client client)
         {
+            if (Settings.DisableCommands)
+                return;
+
             if (!client.HasData("TalentScoresheet"))
                 return;
 
@@ -21,10 +24,38 @@ namespace Talent
             client.SendChatMessage($"~o~CHA: ~w~{sheet.Charisma} > +{sheet.GetChaScore()} Modifier");
         }
 
-        [Command("savetalentsheet")]
+        [Command("loadsheet")]
+        public void GetTalentSheet(Client client)
+        {
+            if (Settings.DisableCommands)
+                return;
+
+            CharacterGen.LoadTalentSheet(client);
+            client.SendChatMessage("[Talent] Loaded. Use /checksheet");
+        }
+
+        [Command("savesheet")]
         public void SaveTalentSheet(Client client)
         {
+            if (Settings.DisableCommands)
+                return;
 
+            if (!client.HasData("TalentScoresheet"))
+                return;
+
+            TalentScoresheet sheet = client.GetData("TalentScoresheet") as TalentScoresheet;
+            sheet.SaveScoresheet();
+            client.SendChatMessage("[Talent] Saved. Use /checksheet");
+        }
+
+        [Command("newsheet")]
+        public void GetNewTalentSheet(Client client)
+        {
+            if (Settings.DisableCommands)
+                return;
+
+            CharacterGen.SetupNewSheet(client, 0, 0, 0, 0, true, true);
+            client.SendChatMessage("[Talent] Created and Saved Talent Sheet. Use /checksheet");
         }
     }
 }

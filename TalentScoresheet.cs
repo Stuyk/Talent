@@ -14,6 +14,8 @@ namespace Talent
         public int Charisma { get; set; }
         public int Strength { get; set; }
 
+        public TalentScoresheet() { }
+
         public TalentScoresheet(Client client)
         {
             PlayerName = client.Name;
@@ -27,6 +29,9 @@ namespace Talent
 
         public void SaveScoresheet()
         {
+            if (Database.Get(PlayerName) != null)
+                ID = Database.Get(PlayerName).ID;
+
             Database.Add(this);
         }
 
