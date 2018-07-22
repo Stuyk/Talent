@@ -7,55 +7,27 @@ namespace Talent
 {
     public class TalentScoresheet
     {
+        public int ID { get; set; }
+        public string PlayerName { get; set; }
         public int Endurance { get; set; }
         public int Intelligence { get; set; }
         public int Charisma { get; set; }
         public int Strength { get; set; }
-        public Client Client { get; set; }
 
-        public TalentScoresheet(Client client, bool randomizeSheet = false)
+        public TalentScoresheet(Client client)
         {
-            Client = client;
-            Client.SetData("TalentScoresheet", this);
-
-            if (randomizeSheet)
-                RandomizeSheet();
+            PlayerName = client.Name;
+            client.SetData("TalentScoresheet", this);
         }
 
-        private void RandomizeSheet()
+        public void AddSheetToPlayer(Client client)
         {
-            int diceroll = 0;
-
-            for (var i = 0; i < 4; i++)
-            {
-                for (var d = 0; d < 3; d++)
-                {
-                    diceroll += Dice.RollDice(6);
-                }
-
-                switch(i)
-                {
-                    case 0:
-                        Endurance = diceroll;
-                        break;
-                    case 1:
-                        Intelligence = diceroll;
-                        break;
-                    case 2:
-                        Charisma = diceroll;
-                        break;
-                    case 3:
-                        Strength = diceroll;
-                        break;
-                }
-
-                diceroll = 0;
-            }
+            client.SetData("TalentScoresheet", this);
         }
 
-        public void RetrieveScoresheet()
+        public void SaveScoresheet()
         {
-            // database stuff...
+            Database.Add(this);
         }
 
         /// <summary>

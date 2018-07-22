@@ -7,5 +7,6 @@
 </ItemGroup>
 <ItemGroup>
 <PackageReference Include="gtanetwork.api" Version="0.*" />
+<PackageReference Include="LiteDB" Version="4.1.4" />
 </ItemGroup>
 </Project>

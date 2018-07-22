@@ -20,5 +20,11 @@ namespace Talent
             client.SendChatMessage($"~b~INT: ~w~{sheet.Intelligence} > +{sheet.GetIntScore()} Modifier");
             client.SendChatMessage($"~o~CHA: ~w~{sheet.Charisma} > +{sheet.GetChaScore()} Modifier");
         }
+
+        [Command("savetalentsheet")]
+        public void SaveTalentSheet(Client client)
+        {
+
+        }
     }
 }

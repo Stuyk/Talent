@@ -13,7 +13,16 @@ namespace Talent
         [ServerEvent(Event.PlayerSpawn)]
         public void OnPlayerSpawn(Client client)
         {
-            new TalentScoresheet(client, false);
+            TalentScoresheet sheet = new TalentScoresheet(client);
+
+            if (!Settings.AssignRandomStats)
+                return;
+
+            sheet.Charisma = CharacterGen.GenerateModifier();
+            sheet.Strength = CharacterGen.GenerateModifier();
+            sheet.Intelligence = CharacterGen.GenerateModifier();
+            sheet.Endurance = CharacterGen.GenerateModifier();
+            sheet.SaveScoresheet();
         }
     }
 }

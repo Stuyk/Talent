@@ -35,7 +35,7 @@ namespace Talent
         /// <returns></returns>
         public static TalentScoresheet SetupNewSheet(Client client, int strength, int intelligence, int endurance, int charisma, bool randomize = false)
         {
-            TalentScoresheet sheet = new TalentScoresheet(client, randomize);
+            TalentScoresheet sheet = new TalentScoresheet(client);
 
             if (randomize)
                 return sheet;
@@ -46,6 +46,18 @@ namespace Talent
             sheet.Charisma = charisma;
 
             return sheet;
+        }
+
+        /// <summary>
+        /// Load the TalentSheet from the database.
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        public static TalentScoresheet LoadTalentSheet(Client client)
+        {
+            TalentScoresheet talentScoresheet = Database.Get(client.Name);
+            talentScoresheet.AddSheetToPlayer(client);
+            return talentScoresheet;
         }
     }
 }
