@@ -1,0 +1,8 @@
+C:\Users\Vape\Desktop\RageMP\server-files\bridge\resources\talent\bin\Debug\netcoreapp2.0\Talent.deps.json
+C:\Users\Vape\Desktop\RageMP\server-files\bridge\resources\talent\bin\Debug\netcoreapp2.0\Talent.dll
+C:\Users\Vape\Desktop\RageMP\server-files\bridge\resources\talent\bin\Debug\netcoreapp2.0\Talent.pdb
+C:\Users\Vape\Desktop\RageMP\server-files\bridge\resources\talent\obj\Debug\netcoreapp2.0\Talent.csproj.CoreCompileInputs.cache
+C:\Users\Vape\Desktop\RageMP\server-files\bridge\resources\talent\obj\Debug\netcoreapp2.0\Talent.AssemblyInfoInputs.cache
+C:\Users\Vape\Desktop\RageMP\server-files\bridge\resources\talent\obj\Debug\netcoreapp2.0\Talent.AssemblyInfo.cs
+C:\Users\Vape\Desktop\RageMP\server-files\bridge\resources\talent\obj\Debug\netcoreapp2.0\Talent.dll
+C:\Users\Vape\Desktop\RageMP\server-files\bridge\resources\talent\obj\Debug\netcoreapp2.0\Talent.pdb
