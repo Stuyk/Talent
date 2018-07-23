@@ -13,6 +13,10 @@ namespace Talent
         public int Intelligence { get; set; }
         public int Charisma { get; set; }
         public int Strength { get; set; }
+        public int EnduranceModifier { get; set; } = 0;
+        public int IntelligenceModifier { get; set; } = 0;
+        public int CharismaModifier { get; set; } = 0;
+        public int StrengthModifier { get; set; } = 0;
 
         public TalentScoresheet() { }
 
@@ -36,12 +40,23 @@ namespace Talent
         }
 
         /// <summary>
+        /// Restore any negative or positive modifier impacts.
+        /// </summary>
+        public void RestoreModifiers()
+        {
+            EnduranceModifier = 0;
+            IntelligenceModifier = 0;
+            CharismaModifier = 0;
+            StrengthModifier = 0;
+        }
+
+        /// <summary>
         /// Return the player's true endurance talent score.
         /// </summary>
         /// <returns></returns>
         public int GetEndScore()
         {
-            return Endurance / Settings.TalentDivision;
+            return (Endurance / Settings.TalentDivision) + EnduranceModifier;
         }
 
         /// <summary>
@@ -50,7 +65,7 @@ namespace Talent
         /// <returns></returns>
         public int GetIntScore()
         {
-            return Intelligence / Settings.TalentDivision;
+            return (Intelligence / Settings.TalentDivision) + IntelligenceModifier;
         }
 
         /// <summary>
@@ -59,7 +74,7 @@ namespace Talent
         /// <returns></returns>
         public int GetChaScore()
         {
-            return Charisma / Settings.TalentDivision;
+            return (Charisma / Settings.TalentDivision) + CharismaModifier;
         }
 
         /// <summary>
@@ -68,7 +83,7 @@ namespace Talent
         /// <returns></returns>
         public int GetStrScore()
         {
-            return Strength / Settings.TalentDivision;
+            return (Strength / Settings.TalentDivision) + StrengthModifier;
         }
     }
 }

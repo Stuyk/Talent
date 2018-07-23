@@ -16,18 +16,19 @@ namespace Talent
         }
 
         /// <summary>
-        /// Checks if the player's endurance beats the score required.
+        /// Checks if the player's endurance beats the score required and if they fail impacts the skill by whatever amount is set. Default is 0. Use + or -
         /// </summary>
         /// <param name="client"></param>
         /// <param name="scoreToBeat"></param>
         /// <returns></returns>
-        public static bool CheckEndurance(Client client, int scoreToBeat = 10)
+        public static bool CheckEndurance(Client client, int scoreToBeat = 10, int impact = 0)
         {
             TalentScoresheet scoresheet = client.GetData("TalentScoresheet") as TalentScoresheet;
 
             if (scoresheet.GetEndScore() + Dice.RollDice() > scoreToBeat)
                 return true;
 
+            scoresheet.EnduranceModifier += impact;
             return false;
         }
 
@@ -37,13 +38,14 @@ namespace Talent
         /// <param name="client"></param>
         /// <param name="scoreToBeat"></param>
         /// <returns></returns>
-        public static bool CheckIntelligence(Client client, int scoreToBeat = 10)
+        public static bool CheckIntelligence(Client client, int scoreToBeat = 10, int impact = 0)
         {
             TalentScoresheet scoresheet = client.GetData("TalentScoresheet") as TalentScoresheet;
 
             if (scoresheet.GetIntScore() + Dice.RollDice() > scoreToBeat)
                 return true;
 
+            scoresheet.IntelligenceModifier += impact;
             return false;
         }
 
@@ -53,13 +55,14 @@ namespace Talent
         /// <param name="client"></param>
         /// <param name="scoreToBeat"></param>
         /// <returns></returns>
-        public static bool CheckStrength(Client client, int scoreToBeat = 10)
+        public static bool CheckStrength(Client client, int scoreToBeat = 10, int impact = 0)
         {
             TalentScoresheet scoresheet = client.GetData("TalentScoresheet") as TalentScoresheet;
 
             if (scoresheet.GetStrScore() + Dice.RollDice() > scoreToBeat)
                 return true;
 
+            scoresheet.StrengthModifier += impact;
             return false;
         }
 
@@ -69,13 +72,14 @@ namespace Talent
         /// <param name="client"></param>
         /// <param name="scoreToBeat"></param>
         /// <returns></returns>
-        public static bool CheckCharisma(Client client, int scoreToBeat = 10)
+        public static bool CheckCharisma(Client client, int scoreToBeat = 10, int impact = 0)
         {
             TalentScoresheet scoresheet = client.GetData("TalentScoresheet") as TalentScoresheet;
 
             if (scoresheet.GetChaScore() + Dice.RollDice() > scoreToBeat)
                 return true;
 
+            scoresheet.CharismaModifier += impact;
             return false;
         }
 
@@ -85,7 +89,7 @@ namespace Talent
         /// <param name="client"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public static bool CheckStrAgainstOpponent(Client client, Client target)
+        public static bool CheckStrAgainstOpponent(Client client, Client target, int impact = 0)
         {
             TalentScoresheet clientSheet = client.GetData("TalentScoresheet") as TalentScoresheet;
             TalentScoresheet targetSheet = client.GetData("TalentScoresheet") as TalentScoresheet;
@@ -93,6 +97,7 @@ namespace Talent
             if (clientSheet.GetStrScore() + Dice.RollDice() > targetSheet.GetStrScore() + Dice.RollDice())
                 return true;
 
+            clientSheet.StrengthModifier += impact;
             return false;
         }
 
@@ -102,7 +107,7 @@ namespace Talent
         /// <param name="client"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public static bool CheckEndAgainstOpponent(Client client, Client target)
+        public static bool CheckEndAgainstOpponent(Client client, Client target, int impact = 0)
         {
             TalentScoresheet clientSheet = client.GetData("TalentScoresheet") as TalentScoresheet;
             TalentScoresheet targetSheet = client.GetData("TalentScoresheet") as TalentScoresheet;
@@ -110,6 +115,7 @@ namespace Talent
             if (clientSheet.GetEndScore() + Dice.RollDice() > targetSheet.GetEndScore() + Dice.RollDice())
                 return true;
 
+            clientSheet.EnduranceModifier += impact;
             return false;
         }
 
@@ -119,7 +125,7 @@ namespace Talent
         /// <param name="client"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public static bool CheckIntAgainstPlayer(Client client, Client target)
+        public static bool CheckIntAgainstPlayer(Client client, Client target, int impact = 0)
         {
             TalentScoresheet clientSheet = client.GetData("TalentScoresheet") as TalentScoresheet;
             TalentScoresheet targetSheet = client.GetData("TalentScoresheet") as TalentScoresheet;
@@ -127,6 +133,7 @@ namespace Talent
             if (clientSheet.GetIntScore() + Dice.RollDice() > targetSheet.GetIntScore() + Dice.RollDice())
                 return true;
 
+            clientSheet.IntelligenceModifier += impact;
             return false;
         }
 
@@ -136,7 +143,7 @@ namespace Talent
         /// <param name="client"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public static bool CheckChaAgainstPlayer(Client client, Client target)
+        public static bool CheckChaAgainstPlayer(Client client, Client target, int impact = 0)
         {
             TalentScoresheet clientSheet = client.GetData("TalentScoresheet") as TalentScoresheet;
             TalentScoresheet targetSheet = client.GetData("TalentScoresheet") as TalentScoresheet;
@@ -144,6 +151,7 @@ namespace Talent
             if (clientSheet.GetChaScore() + Dice.RollDice() > targetSheet.GetChaScore() + Dice.RollDice())
                 return true;
 
+            clientSheet.CharismaModifier += impact;
             return false;
         }
     }

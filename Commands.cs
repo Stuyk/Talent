@@ -24,6 +24,38 @@ namespace Talent
             client.SendChatMessage($"~o~CHA: ~w~{sheet.Charisma} > +{sheet.GetChaScore()} Modifier");
         }
 
+        [Command("checkdebuffs")]
+        public void DebuffCheck(Client client)
+        {
+            if (Settings.DisableCommands)
+                return;
+
+            if (!client.HasData("TalentScoresheet"))
+                return;
+
+            TalentScoresheet sheet = client.GetData("TalentScoresheet") as TalentScoresheet;
+            client.SendChatMessage($"=== ~b~Debuffs ~w~===");
+            client.SendChatMessage($"~g~END: ~w~{sheet.EnduranceModifier}");
+            client.SendChatMessage($"~r~STR: ~w~{sheet.StrengthModifier}");
+            client.SendChatMessage($"~b~INT: ~w~{sheet.IntelligenceModifier}");
+            client.SendChatMessage($"~o~CHA: ~w~{sheet.CharismaModifier}");
+        }
+
+        [Command("restoredebuffs")]
+        public void RestoreDebuffs(Client client)
+        {
+            if (Settings.DisableCommands)
+                return;
+
+            if (!client.HasData("TalentScoresheet"))
+                return;
+
+            TalentScoresheet sheet = client.GetData("TalentScoresheet") as TalentScoresheet;
+            sheet.RestoreModifiers();
+
+            client.SendChatMessage("~g~Debuffs have been cleared.");
+        }
+
         [Command("loadsheet")]
         public void GetTalentSheet(Client client)
         {
